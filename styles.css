@@ -291,6 +291,7 @@ button {
     align-items: center;
     gap: 8px;
     padding-top: 8px;
+    padding-right: 4px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -313,7 +314,22 @@ button {
     color: #FFFFFF;
 }
 
-/* Send Button - Moved Below */
+/* Audio Button */
+.audio-button {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    color: rgba(217, 217, 227, 0.8);
+    border: none;
+    cursor: pointer;
+    margin-left: auto; /* Push to right */
+}
+
+/* Send Button - Now last */
 .send-button {
     width: 34px;
     height: 34px;
@@ -325,7 +341,7 @@ button {
     color: rgba(217, 217, 227, 0.8);
     border: none;
     cursor: pointer;
-    margin-left: auto;
+    margin-left: 8px; /* Space between audio and send */
 }
 
 .send-button:hover {
@@ -661,4 +677,29 @@ button {
 
 .chat-history::-webkit-scrollbar-thumb:hover {
     background: rgba(217, 217, 227, 0.3);
+}
+
+/* Material Symbols Icon */
+.material-symbols-outlined {
+    font-size: 20px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Adjust circular button for shopping bag icon */
+.circular-button .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Audio Button */
+.audio-button:hover {
+    background: rgba(236, 236, 241, 0.1);
+    color: #1DB954;
+}
+
+.audio-button .material-symbols-outlined {
+    font-size: 20px;
+    line-height: 1;
 } 
