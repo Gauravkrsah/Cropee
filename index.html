@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cropsay</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h1>Cropsay</h1>
+                <div class="header-icons">
+                    <button class="icon-button"><span class="material-icons">edit</span></button>
+                    <button class="icon-button"><span class="material-icons">search</span></button>
+                </div>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="#"><span class="material-icons">shopping_cart</span>Shop</a></li>
+                <li><a href="#"><span class="material-icons">sell</span>Sell</a></li>
+                <li><a href="#"><span class="material-icons">school</span>Learn</a></li>
+                <li><a href="#"><span class="material-icons">build</span>Services</a></li>
+            </ul>
+
+            <div class="user-profile">
+                <button>
+                    <img src="https://lh3.googleusercontent.com/a/ACg8ocIE9x0eF6o5wOjpaj33ZwhnQd0u9ZEzMI-0tlBmG8dVq3HfwXY=s96-c" alt="Gaurav Sah" class="avatar">
+                    <span>Gaurav Sah</span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <h2>What can I help with?</h2>
+                
+                <div class="search-container">
+                    <input type="text" placeholder="Message Cropsay...">
+                </div>
+
+                <div class="quick-actions">
+                    <button class="quick-action-btn">
+                        <span class="material-icons">grass</span>
+                        Seeds & Plants
+                    </button>
+                    <button class="quick-action-btn">
+                        <span class="material-icons">agriculture</span>
+                        Equipment
+                    </button>
+                    <button class="quick-action-btn">
+                        <span class="material-icons">science</span>
+                        Fertilizers
+                    </button>
+                    <button class="quick-action-btn">
+                        <span class="material-icons">pest_control</span>
+                        Pesticides
+                    </button>
+                    <button class="quick-action-btn">
+                        <span class="material-icons">water_drop</span>
+                        Irrigation
+                    </button>
+                    <button class="quick-action-btn">
+                        <span class="material-icons">more_horiz</span>
+                        More
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Right Sidebar -->
+        <aside class="right-sidebar">
+            <div class="tab-buttons">
+                <button class="active">Products</button>
+                <button>Experts <span class="badge">6</span></button>
+            </div>
+
+            <div class="products-grid">
+                <!-- Product Card Template -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://placehold.co/200x200/2A2A2A/ECECF1?text=Roundup" alt="Roundup Herbicide">
+                    </div>
+                    <div class="product-info">
+                        <div class="rating">
+                            <span class="material-icons">star</span>
+                            <span>4.8</span>
+                        </div>
+                        <h3>Roundup Herbicide</h3>
+                        <div class="price-stock">
+                            <span class="price">₹450</span>
+                            <span class="stock">In Stock</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Repeat product-card for other products -->
+            </div>
+        </aside>
+    </div>
+</body>
+</html> 
