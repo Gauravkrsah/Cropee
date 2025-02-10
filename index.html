@@ -8,6 +8,12 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
+    <svg style="display: none;">
+        <symbol id="shopping-bag" viewBox="0 0 24 24">
+            <path d="M19 7h-3V6a4 4 0 0 0-8 0v1H5a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zm-9-1a2 2 0 1 1 4 0v1h-4V6zm0 6a1 1 0 1 1 2 0 1 1 0 0 1-2 0z"/>
+        </symbol>
+    </svg>
+
     <div class="container">
         <!-- Sidebar -->
         <nav class="sidebar">
@@ -54,7 +60,24 @@
                 <h2>What can I help with?</h2>
                 
                 <div class="search-container">
-                    <input type="text" placeholder="Message Cropsay...">
+                    <div class="search-input-wrapper">
+                        <input type="text" placeholder="Message Cropsay...">
+                    </div>
+                    
+                    <div class="input-actions">
+                        <button class="circular-button">
+                            <span class="material-icons">add</span>
+                        </button>
+                        <button class="circular-button">
+                            <span class="material-icons">search</span>
+                        </button>
+                        <button class="circular-button">
+                            <span class="material-icons">psychology</span>
+                        </button>
+                        <button class="send-button">
+                            <span class="material-icons">arrow_upward</span>
+                        </button>
+                    </div>
                 </div>
 
                 <div class="quick-actions">
