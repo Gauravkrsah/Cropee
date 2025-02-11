@@ -244,28 +244,28 @@ document.addEventListener('DOMContentLoaded', function() {
     const searchWrapper = document.querySelector('.search-input-wrapper');
 
     if (searchInput && searchWrapper) {
-        // Handle focus/blur events
-        searchInput.addEventListener('focus', () => {
+    // Handle focus/blur events
+    searchInput.addEventListener('focus', () => {
             searchWrapper.classList.add('focus');
-            if (searchInput.value.trim() !== '') {
-                searchWrapper.classList.add('typing');
-            }
-        });
+        if (searchInput.value.trim() !== '') {
+            searchWrapper.classList.add('typing');
+        }
+    });
 
-        searchInput.addEventListener('blur', () => {
+    searchInput.addEventListener('blur', () => {
             searchWrapper.classList.remove('focus');
-            if (searchInput.value.trim() === '') {
-                searchWrapper.classList.remove('typing');
-            }
-        });
+        if (searchInput.value.trim() === '') {
+            searchWrapper.classList.remove('typing');
+        }
+    });
 
-        // Handle input changes
-        searchInput.addEventListener('input', () => {
-            if (searchInput.value.trim() !== '') {
-                searchWrapper.classList.add('typing');
-            } else {
-                searchWrapper.classList.remove('typing');
-            }
+    // Handle input changes
+    searchInput.addEventListener('input', () => {
+        if (searchInput.value.trim() !== '') {
+            searchWrapper.classList.add('typing');
+        } else {
+            searchWrapper.classList.remove('typing');
+        }
         });
     }
 

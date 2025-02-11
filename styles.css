@@ -12,15 +12,18 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     min-height: 100vh;
-    overflow-x: hidden;
+    height: 100vh;
+    overflow: hidden;
     width: 100vw;
     max-width: 100vw;
     margin: 0;
     padding: 0;
+    position: fixed;
 }
 
 html {
-    overflow-x: hidden;
+    overflow: hidden;
+    height: 100%;
     width: 100vw;
     max-width: 100vw;
     margin: 0;
@@ -29,12 +32,12 @@ html {
 
 .container {
     display: flex;
-    min-height: 100vh;
+    height: 100vh;
     width: 100vw;
     max-width: 100vw;
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
+    overflow: hidden;
     background-color: #343541;
     position: relative;
 }
@@ -316,8 +319,7 @@ html {
     height: 100vh;
     position: relative;
     background: #343541;
-    overflow-x: hidden;
-    overflow-y: auto;
+    overflow: hidden;
     transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1), width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     margin-left: 260px;
     width: calc(100vw - 260px);
@@ -336,7 +338,7 @@ html {
     font-size: 2rem;
     font-weight: 600;
     text-align: center;
-    margin: 0 0 1.5rem;
+    margin: 0 0 2rem;
     line-height: 2.25rem;
 }
 
@@ -355,51 +357,259 @@ button {
 
 /* Search Container Updates */
 .search-container {
-    position: relative;
-    bottom: auto;
-    left: auto;
-    right: auto;
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
     padding: 12px 24px 24px;
-    background: transparent;
+    background: linear-gradient(to bottom, transparent, #343541 20%);
     z-index: 100;
     max-width: 48rem;
     margin: 0 auto;
     width: 100%;
 }
 
-/* Input Area Updates */
+/* Input Wrapper Updates */
 .search-input-wrapper {
     max-width: 100%;
     margin: 0 auto;
     display: flex;
-    align-items: center;
-    gap: 8px;
-    background: #40414F;
+    align-items: flex-start;
+    gap: 12px;
+    background: rgba(64, 65, 79, 0.95);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    padding: 10px 14px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    border-radius: 16px;
+    padding: 12px 16px;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
     transition: all 0.2s ease-in-out;
+    min-height: auto;
+    position: relative;
+    overflow: visible;
 }
 
+.search-input-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0.5) 50%,
+        rgba(255, 255, 255, 0.1) 100%
+    );
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: destination-out;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+    transform: rotate(360deg);
+}
+
+.search-input-wrapper:focus-within::before {
+    opacity: 1;
+}
+
+.search-input-wrapper:focus-within {
+    border-color: transparent;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    background: rgba(64, 65, 79, 1);
+}
+
+/* Input Field Updates */
 .search-input-wrapper input {
     flex: 1;
     background: transparent;
     border: none;
     color: #FFFFFF;
-    font-size: var(--font-base);
+    font-size: 1rem;
     line-height: 1.5;
     padding: 0;
     outline: none;
     font-family: inherit;
-    margin: 0 8px;
+    margin: 0;
     min-height: 24px;
     max-height: 200px;
     overflow-y: auto;
+    resize: none;
 }
 
 .search-input-wrapper input::placeholder {
     color: rgba(255, 255, 255, 0.5);
+}
+
+/* Button Updates */
+.plus-button,
+.audio-button,
+.send-button {
+    width: 32px;
+    height: 32px;
+    padding: 6px;
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+}
+
+.plus-button .material-icons,
+.audio-button .material-symbols-outlined,
+.send-button .material-icons {
+    font-size: 20px;
+}
+
+@media (min-width: 769px) {
+    .search-container {
+        padding: 16px 24px 24px;
+    }
+
+    .search-input-wrapper {
+        padding: 16px 20px;
+        gap: 16px;
+        backdrop-filter: blur(8px);
+    }
+
+    .search-input-wrapper input {
+        font-size: 1.1rem;
+        padding: 2px 0;
+        min-height: 28px;
+    }
+
+    .plus-button,
+    .audio-button,
+    .send-button {
+        width: 36px;
+        height: 36px;
+        padding: 8px;
+    }
+
+    .plus-button .material-icons,
+    .audio-button .material-symbols-outlined,
+    .send-button .material-icons {
+        font-size: 22px;
+    }
+
+    .content-wrapper {
+        padding-bottom: 140px;
+    }
+}
+
+/* Scrollbar styling for input */
+.search-input-wrapper input::-webkit-scrollbar {
+    width: 4px;
+}
+
+.search-input-wrapper input::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.search-input-wrapper input::-webkit-scrollbar-thumb {
+    background: rgba(217, 217, 227, 0.2);
+    border-radius: 2px;
+}
+
+.search-input-wrapper input::-webkit-scrollbar-thumb:hover {
+    background: rgba(217, 217, 227, 0.3);
+}
+
+/* Button hover effects */
+.plus-button:hover,
+.audio-button:hover,
+.send-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.9);
+    transform: translateY(-1px);
+}
+
+.send-button:hover {
+    color: #1DB954;
+}
+
+/* Mobile Specific Styles - Update mobile styles */
+@media (max-width: 768px) {
+    .search-container {
+        position: fixed;
+        padding: 12px 8px 8px;
+        bottom: 24px;
+        z-index: 1000;
+        pointer-events: auto;
+        left: 0;
+        right: 0;
+    }
+
+    .search-input-wrapper {
+        background: rgba(64, 65, 79, 0.95);
+        border-radius: 18px;
+        margin: 0 auto;
+        padding: 12px 16px;
+        min-height: auto;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+        transform-origin: bottom;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        max-width: calc(100% - 32px);
+        gap: 8px;
+        position: relative;
+        overflow: visible;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        pointer-events: auto;
+    }
+
+    .search-input-wrapper::before {
+        content: '';
+        position: absolute;
+        inset: -1px;
+        border-radius: inherit;
+        padding: 1px;
+        background: linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.1) 0%,
+            rgba(255, 255, 255, 0.5) 50%,
+            rgba(255, 255, 255, 0.1) 100%
+        );
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        mask-composite: exclude;
+        -webkit-mask-composite: destination-out;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+        pointer-events: none;
+        transform: rotate(360deg);
+    }
+
+    .search-input-wrapper:focus-within::before {
+        opacity: 1;
+    }
+
+    .search-input-wrapper:focus-within {
+        border-color: transparent;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        background: rgba(52, 53, 65, 0.98);
+    }
+
+    /* Rest of the existing mobile styles */
+    .plus-button,
+    .audio-button,
+    .send-button {
+        width: 32px;
+        height: 32px;
+        padding: 6px;
+        pointer-events: auto;
+        z-index: 1;
+    }
+
+    .plus-button .material-icons,
+    .audio-button .material-symbols-outlined,
+    .send-button .material-icons {
+        font-size: 20px;
+    }
 }
 
 /* Button Updates */
@@ -459,7 +669,7 @@ button {
     display: flex;
     gap: 12px;
     padding: 0;
-    margin: 8px auto;
+    margin: 0 auto 2rem;
     flex-wrap: wrap;
     justify-content: center;
     max-width: 800px;
@@ -496,37 +706,6 @@ button {
     font-size: 18px;
 }
 
-/* Responsive adjustments for quick actions */
-@media (max-width: 768px) {
-    .quick-actions {
-        gap: 8px;
-        padding: 0 12px;
-    }
-    
-    .quick-action-btn {
-        min-width: 130px;
-        max-width: 160px;
-        padding: 6px 12px;
-    }
-}
-
-@media (max-width: 480px) {
-    .quick-actions {
-        gap: 6px;
-    }
-    
-    .quick-action-btn {
-        min-width: 120px;
-        max-width: 150px;
-        font-size: 12px;
-        padding: 6px 10px;
-    }
-    
-    .quick-action-btn .material-icons {
-        font-size: 16px;
-    }
-}
-
 /* Content wrapper adjustments */
 .content-wrapper {
     flex: 1;
@@ -537,9 +716,13 @@ button {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    min-height: calc(100vh - 48px);
+    height: calc(100vh - 140px);
+    overflow-y: auto;
     overflow-x: hidden;
+    position: relative;
+    scrollbar-width: thin;
+    justify-content: center;
+    padding-bottom: 120px;
 }
 
 /* Main heading update */
@@ -548,7 +731,7 @@ button {
     font-size: 2rem;
     font-weight: 600;
     text-align: center;
-    margin: 0 0 1.5rem;
+    margin: 0 0 2rem;
     line-height: 2.25rem;
 }
 
@@ -1156,14 +1339,23 @@ button {
         margin-left: 0 !important;
         width: 100% !important;
         max-width: 100% !important;
-        min-height: calc(100vh - 48px);
-        padding-bottom: 2rem;
+        padding-top: 48px; /* Account for mobile header */
     }
 
     .content-wrapper {
-        padding: 1rem;
-        min-height: calc(100vh - 48px);
-        max-width: 100%;
+        height: calc(100vh - 180px);
+        padding: 12px;
+        padding-bottom: 100px;
+        justify-content: center;
+    }
+
+    .main-content h2 {
+        font-size: 1.75rem;
+        margin: 0 0 1.5rem;
+    }
+
+    .quick-actions {
+        margin-bottom: 1.5rem;
     }
 
     .mobile-header {
@@ -1323,13 +1515,10 @@ button {
 
 /* Update message styles */
 .message {
-    display: flex;
+    width: 100%;
     padding: 20px 16px;
-    gap: 20px;
-    border-radius: 0;
     animation: fadeIn 0.3s ease;
-    /* Remove the border-bottom line */
-    border-bottom: none;
+    background: transparent;
 }
 
 .message.user {
@@ -1349,14 +1538,21 @@ button {
 
 /* Update chat messages container */
 .chat-messages {
-    flex: 1;
+    width: 100%;
+    max-width: 48rem;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     gap: 1px;
     padding: 0;
-    margin: 0;
-    max-height: calc(100vh - 200px);
-    overflow-y: auto;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.chat-active .chat-messages {
+    opacity: 1;
+    visibility: visible;
 }
 
 /* Optional: Add subtle gradient between messages */
@@ -1474,7 +1670,7 @@ button {
     display: flex;
     gap: 12px;
     padding: 0;
-    margin: 8px auto;
+    margin: 0 auto 2rem;
     flex-wrap: wrap;
     justify-content: center;
     max-width: 800px;
@@ -2118,5 +2314,107 @@ button {
     .expert-filter {
         padding: 0.25rem 0.625rem;
         font-size: 0.75rem;
+    }
+}
+
+/* Welcome Screen */
+.welcome-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+    opacity: 1;
+    transition: all 0.3s ease;
+    padding: 0 20px;
+}
+
+.welcome-screen h2,
+.welcome-screen .quick-actions {
+    transition: all 0.3s ease;
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.chat-active .welcome-screen {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+}
+
+.chat-active .welcome-screen h2,
+.chat-active .welcome-screen .quick-actions {
+    transform: translateY(-20px);
+    opacity: 0;
+}
+
+/* Chat Interface */
+.chat-interface {
+    width: 100%;
+    max-width: 48rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    position: absolute;
+    inset: 0;
+}
+
+.chat-active .chat-interface {
+    opacity: 1;
+    visibility: visible;
+    position: relative;
+}
+
+/* Scrollbar Styling */
+.content-wrapper::-webkit-scrollbar {
+    width: 4px;
+}
+
+.content-wrapper::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.content-wrapper::-webkit-scrollbar-thumb {
+    background: rgba(217, 217, 227, 0.2);
+    border-radius: 2px;
+}
+
+.content-wrapper::-webkit-scrollbar-thumb:hover {
+    background: rgba(217, 217, 227, 0.3);
+}
+
+/* Add new keyframes for animations */
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes glowingLight {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Add new keyframe for border light animation */
+@keyframes borderLight {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
     }
 } 
