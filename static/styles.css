@@ -281,19 +281,185 @@ html {
     width: 100%;
     display: flex;
     align-items: center;
-    gap: 8px;
-    background: none;
-    border: none;
-    color: #ECECF1;
-    padding: 4px 8px;
-    border-radius: 4px;
+    justify-content: center;
+    gap: 12px;
+    padding: 10px 16px;
+    background: #202124;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: #ffffff;
+    font-size: 0.875rem;
+    font-weight: 500;
     cursor: pointer;
-    transition: background-color 0.2s ease;
-    text-align: left;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .user-profile button:hover {
-    background-color: rgba(255, 255, 255, 0.05);
+    background: #303134;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+}
+
+.user-profile button:active {
+    background: #3c4043;
+    transform: translateY(0);
+}
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+    .user-profile button {
+        background: #202124;
+        border-color: rgba(255, 255, 255, 0.1);
+        color: #ffffff;
+    }
+
+    .user-profile button:hover {
+        background: #303134;
+    }
+
+    .user-profile button:active {
+        background: #3c4043;
+    }
+}
+
+#loginPrompt {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+#loginPrompt svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* Google Logo SVG styles */
+.google-logo-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+}
+
+.google-logo-wrapper svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* Logout Modal Enhancements */
+#logoutModal > div {
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-left: 15rem;
+    margin-right: 1rem;
+    max-width: 400px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(32, 33, 35, 0.95);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border-radius: 16px;
+    padding: 24px;
+    backdrop-filter: blur(16px);
+}
+
+#logoutModal.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#logoutModal:not(.hidden) > div {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+#confirmLogout, #cancelLogout {
+    padding: 12px 24px;
+    border-radius: 12px;
+    border: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    font-size: 0.875rem;
+}
+
+#confirmLogout {
+    background: linear-gradient(to right, #ef4444, #dc2626);
+    color: white;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+}
+
+#confirmLogout:hover {
+    background: linear-gradient(to right, #dc2626, #b91c1c);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(239, 68, 68, 0.3);
+}
+
+#cancelLogout {
+    background: rgba(255, 255, 255, 0.1);
+    color: #e5e7eb;
+    backdrop-filter: blur(4px);
+}
+
+#cancelLogout:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    #logoutModal > div {
+        margin: 16px;
+        max-width: calc(100% - 32px);
+        padding: 20px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #confirmLogout, #cancelLogout {
+        padding: 10px 20px;
+        font-size: 0.875rem;
+    }
+
+    .user-profile button {
+        padding: 8px 16px;
+        font-size: 0.875rem;
+    }
+
+    .google-logo-wrapper svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    #logoutModal > div {
+        margin: 12px;
+        padding: 16px;
+        border-radius: 12px;
+    }
+
+    #logoutModal h3 {
+        font-size: 1.125rem;
+    }
+
+    #logoutModal p {
+        font-size: 0.875rem;
+    }
+
+    .user-profile button {
+        padding: 8px 12px;
+        font-size: 0.8125rem;
+    }
+
+    .google-logo-wrapper svg {
+        width: 18px;
+        height: 18px;
+    }
 }
 
 .user-profile .avatar {

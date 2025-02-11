@@ -1,0 +1,49 @@
+{% extends "index.html" %}
+
+{% block content %}
+<div class="content-wrapper">
+    <h2>Welcome to your Dashboard</h2>
+    
+    <!-- Quick Actions -->
+    <div class="quick-actions">
+        <button class="quick-action-btn">
+            <span class="material-icons">grass</span>
+            Crop Analysis
+        </button>
+        <button class="quick-action-btn">
+            <span class="material-icons">inventory_2</span>
+            Storage Solutions
+        </button>
+        <button class="quick-action-btn">
+            <span class="material-icons">attach_money</span>
+            Market Prices
+        </button>
+        <button class="quick-action-btn">
+            <span class="material-icons">science</span>
+            Soil Testing
+        </button>
+        <button class="quick-action-btn">
+            <span class="material-icons">schedule</span>
+            Crop Calendar
+        </button>
+    </div>
+
+    <!-- Search Container -->
+    <div class="search-container">
+        <div class="search-input-wrapper">
+            <button class="plus-button">
+                <span class="material-icons">add</span>
+            </button>
+            <input type="text" placeholder="Message Cropsay..." class="w-full focus:outline-none bg-transparent" rows="1">
+            <div class="dynamic-button">
+                <button class="audio-button">
+                    <span class="material-symbols-outlined">graphic_eq</span>
+                </button>
+                <button class="send-button">
+                    <span class="material-icons">arrow_upward</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
