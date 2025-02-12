@@ -2,7 +2,7 @@ import csv
 import os
 from django.core.management.base import BaseCommand
 from app2_all_products.models import SubProductCategory, Product
-
+ 
 class Command(BaseCommand):
     help = 'Export products from CSV file'
 
@@ -16,7 +16,7 @@ class Command(BaseCommand):
             reader = csv.DictReader(csvfile)
             for row in reader:
                 try:
-                    subproductcategory = SubProductCategory.objects.get(sub_productname=row['sub_category'])
+                    subproductcategory = SubProductCategory.objects.get(sub_productname=row['sub_productname'])
                     product, created = Product.objects.get_or_create(
                         sub_category=subproductcategory,
                         prod_name=row['prod_name'],
