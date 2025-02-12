@@ -18,7 +18,6 @@ class SubCategory(models.Model):
         return self.sub_categoryname
 
 
-
 class SubProductCategory(models.Model):
     sub_productcategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE, related_name='subProdCategory')
     sub_productname = models.CharField(max_length=255)
@@ -38,7 +37,7 @@ class Product(models.Model):
         PENDING = "Pending", "Pending"
         LIVE = "Live", "Live"
 
-    sub_category = models.ForeignKey(SubProductCategory, on_delete=models.CASCADE, related_name='products')
+    sub_category = models.ForeignKey(SubProductCategory, on_delete=models.CASCADE, related_name='product_images')
     prod_name = models.CharField(max_length=255)
     prod_img = models.ImageField(upload_to='products/')
     description = models.TextField()
