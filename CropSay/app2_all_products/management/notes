@@ -1,0 +1,4 @@
+python manage.py export_categories
+python manage.py export_subcategories
+python manage.py export_subproductcategories
+python manage.py export_products

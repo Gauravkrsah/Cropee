@@ -39,7 +39,7 @@ class Product(models.Model):
 
     sub_category = models.ForeignKey(SubProductCategory, on_delete=models.CASCADE, related_name='product_images')
     prod_name = models.CharField(max_length=255)
-    prod_img = models.ImageField(upload_to='products/')
+    prod_img = models.ImageField(upload_to='products/', null=True)
     description = models.TextField()
     rating = models.FloatField(null=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)

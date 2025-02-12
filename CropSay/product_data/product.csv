@@ -1,0 +1,6 @@
+id,sub_category,prod_name,prod_img,description,rating,price,status,left_item,prod_status
+1,Android Phones,Samsung Galaxy S22,products/s22.jpg,Latest Samsung flagship,4.5,899.99,In_stock,10,Live
+2,iPhones,iPhone 14,products/iphone14.jpg,Latest Apple iPhone,4.7,999.99,Low_stock,5,Live
+3,Gaming Laptops,ASUS ROG Zephyrus,products/rog.jpg,Powerful gaming laptop,4.8,1999.99,In_stock,15,Pending
+4,Formal Shirts,Cotton Formal Shirt,products/shirt.jpg,Premium quality formal shirt,4.3,39.99,In_stock,50,Live
+5,Evening Gowns,Designer Evening Gown,products/gown.jpg,Elegant long evening dress,4.6,149.99,Out_of_stock,0,Pending
