@@ -1,0 +1,243 @@
+{% load static %}
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cropsay</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+    <link rel="stylesheet" href="{% static 'css/chat.css' %}"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/w3-css/4.1.0/w3.css">
+</head>
+<body>
+    <svg style="display: none;">
+        <symbol id="shopping-bag" viewBox="0 0 24 24">
+            <path d="M19 7h-3V6a4 4 0 0 0-8 0v1H5a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zm-9-1a2 2 0 1 1 4 0v1h-4V6zm0 6a1 1 0 1 1 2 0 1 1 0 0 1-2 0z"/>
+        </symbol>
+    </svg>
+
+    <div class="container">
+        <!-- Toggle Buttons Container -->
+        <div class="toggle-buttons-container">
+            <button id="sidebarToggleButton" class="hidden" aria-label="Toggle Sidebar">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M3 8C3 7.44772 3.44772 7 4 7H20C20.5523 7 21 7.44772 21 8C21 8.55228 20.5523 9 20 9H4C3.44772 9 3 8.55228 3 8ZM3 16C3 15.4477 3.44772 15 4 15H14C14.5523 15 15 15.4477 15 16C15 16.5523 14.5523 17 14 17H4C3.44772 17 3 16.5523 3 16Z" fill="currentColor"/>
+                </svg>
+            </button>
+            <button id="newChatButton" class="hidden" aria-label="New Chat">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 4C12.5523 4 13 4.44772 13 5V11H19C19.5523 11 20 11.4477 20 12C20 12.5523 19.5523 13 19 13H13V19C13 19.5523 12.5523 20 12 20C11.4477 20 11 19.5523 11 19V13H5C4.44772 13 4 12.5523 4 12C4 11.4477 4.44772 11 5 11H11V5C11 4.44772 11.4477 4 12 4Z" fill="currentColor"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Sidebar -->
+        {% include 'app1_chatapp/sidebar.html' %}
+
+        <!-- Main Content -->
+        {% include 'app1_chatapp/chat_main_content.html' %}
+
+        <!-- Right Sidebar -->
+        <aside class="right-sidebar">
+            <!-- Products Panel -->
+            <div class="right-panel products-panel">
+                <button class="panel-close-btn">
+                    <span class="material-icons">close</span>
+                </button>
+                <div class="panel-header">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-semibold">Recommended Products</h3>
+                        <div class="flex items-center gap-2">
+                            <button class="filter-btn flex items-center gap-1 px-3 py-1.5 rounded-lg bg-gray-800 hover:bg-gray-700">
+                                <span class="material-icons text-sm">filter_list</span>
+                                <span>Filters</span>
+                            </button>
+                            <button class="sort-btn flex items-center gap-1 px-3 py-1.5 rounded-lg bg-gray-800 hover:bg-gray-700">
+                                <span class="material-icons text-sm">sort</span>
+                                <span>Sort</span>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Quick filters -->
+                    <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-hide">
+                        <button class="category-filter active px-3 py-1.5 rounded-full text-sm bg-green-600 hover:bg-green-700">All</button>
+                        <button class="category-filter px-3 py-1.5 rounded-full text-sm bg-gray-800 hover:bg-gray-700">Pesticides</button>
+                        <button class="category-filter px-3 py-1.5 rounded-full text-sm bg-gray-800 hover:bg-gray-700">Seeds</button>
+                        <button class="category-filter px-3 py-1.5 rounded-full text-sm bg-gray-800 hover:bg-gray-700">Equipment</button>
+                    </div>
+                </div>
+                
+                <div class="products-grid">
+                    <!-- Product Card -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://th.bing.com/th/id/R.ed9323648fc5926a00923e4de434d698?rik=wx7M6gPKY47eKQ&pid=ImgRaw&r=0" alt="Roundup" 
+                                 class="object-cover w-full h-full">
+                            <div class="product-overlay">
+                                <button class="shopping-bag-icon">
+                                    <span class="material-icons">shopping_bag</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="rating">
+                                <span class="material-icons">star</span>
+                                <span class="rating-value">4.8</span>
+                            </div>
+                            <h4 class="product-title">Roundup</h4>
+                            <p class="product-type">Roundup Herbicide</p>
+                            <div class="price-stock">
+                                <span class="current-price">₹450</span>
+                                <span class="stock-badge">In Stock</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Second Product Card -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://th.bing.com/th/id/OIP._HIcErItQSnRCExx0irpZAHaHa?w=162&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="Premium Seeds" 
+                                 class="object-cover w-full h-full">
+                            <div class="product-overlay">
+                                <button class="shopping-bag-icon">
+                                    <span class="material-icons">shopping_bag</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="rating">
+                                <span class="material-icons">star</span>
+                                <span class="rating-value">4.9</span>
+                            </div>
+                            <h4 class="product-title">Premium Seeds</h4>
+                            <p class="product-type">High-Yield Wheat Seeds</p>
+                            <div class="price-stock">
+                                <span class="current-price">₹2,550</span>
+                                <span class="stock-badge low">Low Stock</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Experts Panel -->
+            <div class="right-panel experts-panel">
+                <button class="panel-close-btn">
+                    <span class="material-icons">close</span>
+                </button>
+                <div class="panel-header">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-semibold">Available Experts</h3>
+                        <button class="filter-btn flex items-center gap-1 px-3 py-1.5 rounded-lg bg-gray-800 hover:bg-gray-700">
+                            <span class="material-icons text-sm">filter_list</span>
+                            <span>Filter</span>
+                        </button>
+                    </div>
+                    <div class="expert-filters">
+                        <button class="expert-filter active">All</button>
+                        <button class="expert-filter">Agronomists</button>
+                        <button class="expert-filter">Soil Specialists</button>
+                        <button class="expert-filter">Pest Control</button>
+                    </div>
+                </div>
+
+                <div class="experts-list">
+                    <!-- Expert Card -->
+                    <div class="expert-card">
+                        <div class="flex gap-3">
+                            <div class="avatar-container">
+                                <img src="https://source.unsplash.com/featured/?professional" alt="Dr. Sarah Chen" class="avatar">
+                                <span class="status-badge"></span>
+                            </div>
+                            <div class="expert-info">
+                                <div class="expert-header">
+                                    <div>
+                                        <h4 class="expert-name">Dr. Sarah Chen</h4>
+                                        <p class="expert-title">Senior Agronomist</p>
+                                    </div>
+                                    <div class="expert-rating">
+                                        <span class="material-icons">star</span>
+                                        <span>4.9</span>
+                                    </div>
+                                </div>
+                                <div class="expert-meta">
+                                    <span class="meta-item">
+                                        <span class="material-icons">work</span>
+                                        15+ years
+                                    </span>
+                                    <span class="meta-item">
+                                        <span class="material-icons">language</span>
+                                        English, Hindi
+                                    </span>
+                                </div>
+                                <div class="expert-actions">
+                                    <button class="expert-btn primary">
+                                        <span class="material-icons">chat</span>
+                                        Chat Now
+                                    </button>
+                                    <button class="expert-btn secondary">
+                                        <span class="material-icons">schedule</span>
+                                        Schedule
+                                    </button>
+                                    <button class="expert-btn icon-only secondary">
+                                        <span class="material-icons">more_vert</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Additional Expert Cards with the same structure -->
+                    <div class="expert-card">
+                        <div class="flex gap-3">
+                            <div class="avatar-container">
+                                <img src="https://source.unsplash.com/featured/?farmer" alt="Dr. Rajesh Kumar" class="avatar">
+                                <span class="status-badge"></span>
+                            </div>
+                            <div class="expert-info">
+                                <div class="expert-header">
+                                    <div>
+                                        <h4 class="expert-name">Dr. Rajesh Kumar</h4>
+                                        <p class="expert-title">Soil Specialist</p>
+                                    </div>
+                                    <div class="expert-rating">
+                                        <span class="material-icons">star</span>
+                                        <span>4.8</span>
+                                    </div>
+                                </div>
+                                <div class="expert-meta">
+                                    <span class="meta-item">
+                                        <span class="material-icons">work</span>
+                                        12+ years
+                                    </span>
+                                    <span class="meta-item">
+                                        <span class="material-icons">language</span>
+                                        Hindi, English
+                                    </span>
+                                </div>
+                                <div class="expert-actions">
+                                    <button class="expert-btn primary">
+                                        <span class="material-icons">chat</span>
+                                        Chat Now
+                                    </button>
+                                    <button class="expert-btn secondary">
+                                        <span class="material-icons">schedule</span>
+                                        Schedule
+                                    </button>
+                                    <button class="expert-btn icon-only secondary">
+                                        <span class="material-icons">more_vert</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+</body>
+<script src="{% static 'js/script.js' %}"></script>
+
+</html> 

@@ -1,0 +1,21 @@
+
+
+<div class="w3-content interests-container w3-container w3-text-white" >
+    <div class="grid">
+        {% for car in cards %}
+            <a href="{% url car.link %}" class="card-link">
+                <div class="card">
+                    <div class="icon problem-solving">{{car.icon}}</div>
+                    <div class="text">
+                        {{car.topic}}
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+
+

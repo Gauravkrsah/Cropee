@@ -11,25 +11,24 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
+from decouple import config
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-oh-nwym3!2a+#iny^fn!q^pk%k3f9p1=2olp9ons5g_5)-n5ve'
+SECRET_KEY = config("SECRET_KEY")
+ALLOWED_HOSTS = config('DJANGO_ALLOWED_HOST', default='').split(',')
+DEBUG= config("DJANGO_DEBUG")
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+CLIENT_ID = config("CLIENT_ID")
+CLIENT_SECRET = config("CLIENT_SECRET")
+REDIRECT_URI = config("REDIRECT_URI")
+TOKEN_URL = config("TOKEN_URL")
+USER_INFO_URL = config("USER_INFO_URL")
 
-ALLOWED_HOSTS = []
-
+GEMINI_KEY = config("GEMINI_KEY")
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -39,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app1_chatapp',
     'app2_all_products',
+    'app3_authentication',
+    'home'
 ]
 
 MIDDLEWARE = [

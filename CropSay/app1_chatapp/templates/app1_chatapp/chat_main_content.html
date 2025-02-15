@@ -1,0 +1,116 @@
+<main class="main-content">
+    <!-- Mobile Header -->
+    <div class="mobile-header md:hidden">
+        <button class="menu-button hover:bg-gray-700 rounded-lg p-2">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M3 8C3 7.44772 3.44772 7 4 7H20C20.5523 7 21 7.44772 21 8C21 8.55228 20.5523 9 20 9H4C3.44772 9 3 8.55228 3 8ZM3 16C3 15.4477 3.44772 15 4 15H14C14.5523 15 15 15.4477 15 16C15 16.5523 14.5523 17 14 17H4C3.44772 17 3 16.5523 3 16Z" fill="currentColor"></path>
+            </svg>
+        </button>
+        <h1>Cropsay</h1>
+        <div class="header-actions">
+            <button class="header-icon">
+                <span class="material-symbols-outlined">shopping_bag</span>
+            </button>
+            <button class="header-icon">
+                <span class="material-icons">psychology</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Desktop Header -->
+    <div class="hidden md:flex items-center justify-between px-4 py-2 border-b border-gray-700">
+        <h1 class="text-lg font-semibold text-white">Cropsay</h1>
+        <div class="flex items-center gap-3">
+            <button class="header-icon">
+                <span class="material-symbols-outlined">shopping_bag</span>
+            </button>
+            <button class="header-icon">
+                <span class="material-icons">psychology</span>
+            </button>
+        </div>
+    </div>
+
+    
+    {% if matching_product %}
+        <div class="content-wrapper w3-border w3-border-white "  style="width:100%;" >
+            <button class="close-btn" onclick="window.location.href='{% url 'chathome' %}'; this.parentElement.style.display='none'"  style="position: absolute; top: 5px; right: 10px; background: none; border: none; font-size: 20px; font-weight: bold; cursor: pointer;">&times;</button>
+            <h3 class="w3-serif">{{message}}<strong>{{ matching_product }}</strong></h3>
+        </div>
+    {% elif error %}
+    <div class="content-wrapper" style="margin-top:200px;">
+        <div class="w3-panel w3-red w3-padding w3-margin">
+            <p class="w3-large">{{ error }}</p>
+        </div>
+    </div>
+    {% else %}
+    <!-- Content Wrapper -->
+        <div class="content-wrapper" style="margin-top:200px;">
+            <h2 class="text-4xl font-semibold text-center mb-8">What can I help with?</h2>
+            
+            <!-- Quick Actions -->
+            <div class="quick-actions mb-8 flex flex-wrap justify-center gap-2 max-w-3xl mx-auto px-4">
+                <button class="quick-action-btn">
+                    <span class="material-icons">grass</span>
+                    Crop Analysis
+                </button>
+                
+                
+                <button class="quick-action-btn">
+                    <span class="material-icons">inventory_2</span>
+                    Storage Solutions
+                </button>
+                <button class="quick-action-btn">
+                    <span class="material-icons">attach_money</span>
+                    Market Prices
+                </button>
+                <button class="quick-action-btn">
+                    <span class="material-icons">science</span>
+                    Soil Testing
+                </button>
+                <button class="quick-action-btn">
+                    <span class="material-icons">schedule</span>
+                    Crop Calendar
+                </button>
+            </div>
+
+            {% if not user.is_authenticated %}
+                <div class="w3-content w3-padding-large">
+                    <div class="w3-content w3-center w3-border w3-padding-large w3-border w3-round-large w3-border-white">
+                        <p class="w3-text-red">Please <a href="{% url 'google-login' %}">authenticate</a> to start the conversation.</p>
+                    </div>
+                </div>
+            {% endif %}
+            
+            <!-- Footer Text -->
+            <div class="footer-text text-sm text-gray-400 mt-4">
+                Cropsay can make mistakes. Check important info.
+            </div>
+        </div>
+    {% endif %}
+
+
+
+    <!-- Search Container -->
+    {% if user.is_authenticated %}
+        <form action="{% url 'suggest-crops' %}" method="POST" class="search-container w-full max-w-2xl">
+            {% csrf_token %}
+            <div class="search-input-wrapper">
+                <button type="button" class="plus-button">
+                    <span class="material-icons">add</span>
+                </button>
+                <input type="text" name="description" placeholder="Message Cropsay..." class="w-full focus:outline-none bg-transparent" rows="1" required>
+
+                <div class="dynamic-button">
+                    <button type="button" class="audio-button">
+                        <span class="material-symbols-outlined">graphic_eq</span>
+                    </button>
+                    <button type="submit" class="send-button">
+                        <span class="material-icons">arrow_upward</span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    {% endif %}
+
+
+</main>
