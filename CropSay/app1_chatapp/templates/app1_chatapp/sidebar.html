@@ -33,16 +33,19 @@
     <div class="chat-history flex-1 overflow-y-auto">
         <div class="history-label text-xs text-gray-400 px-3 py-2">Previous 7 Days</div>
         <div class="history-list space-y-1 px-2">
-            <a href="#" class="history-item flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-700 transition-colors">
+            <a href="{% url 'chathome' %}" class="history-item flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-700 transition-colors">
                 <span class="material-icons text-gray-400">chat_bubble_outline</span>
                 <span class="history-text">New Chat</span>
             </a>
+            {% for day in last_7_days %}
             <a href="#" class="history-item flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-700 transition-colors">
                 <span class="material-icons text-gray-400">chat_bubble_outline</span>
-                <span class="history-text">New Chat</span>
+                <span class="history-text">{{ day }}</span>
             </a>
+            {% endfor %}
         </div>
     </div>
+    
     
     {% if user.is_authenticated %}
         <div class="user-profile p-2 border-t border-gray-700">

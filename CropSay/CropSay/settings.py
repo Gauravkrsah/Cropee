@@ -25,8 +25,8 @@ CLIENT_SECRET = config("CLIENT_SECRET")
 REDIRECT_URI = config("REDIRECT_URI")
 TOKEN_URL = config("TOKEN_URL")
 USER_INFO_URL = config("USER_INFO_URL")
-
 GEMINI_KEY = config("GEMINI_KEY")
+
 
 # Application definition
 INSTALLED_APPS = [
@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'app1_chatapp',
     'app2_all_products',
     'app3_authentication',
-    'home'
+    'home',
+    'app4_chat_specialist'
 ]
 
 MIDDLEWARE = [

@@ -5,9 +5,18 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 import google.generativeai as genai
 from django.conf import settings
+from django.utils.timezone import now 
+from datetime import datetime, timedelta
 
 def ChatHome(request):
-    return render(request, "app1_chatapp/chathome.html")
+    today = datetime.today().date()
+    last_7_days = [(today - timedelta(days=i)).strftime("%A, %b %d") for i in range(1, 3)]  
+
+    context = {
+        "last_7_days": last_7_days
+    }
+    return render(request, "app1_chatapp/chathome.html", context)
+
 
 
 def get_matching_word(description, valid_words):
@@ -16,33 +25,20 @@ def get_matching_word(description, valid_words):
         model = genai.GenerativeModel("gemini-pro")
 
         prompt = f"""
-        From this list of products: {', '.join(valid_words)}
-        Based on this description: '{description}'
-        Return exactly one word from the list that best matches. 
-        Only return the product name, nothing else.
+        You must choose exactly one word from this list: {', '.join(valid_words)}.
+        Do not return any other word or extra text.
+        If none of the words match, return "None".
+        Description: '{description}'
         """
 
         response = model.generate_content(prompt)
         suggested_word = response.text.strip()
 
-        # Check for exact or case-insensitive match
-        for word in valid_words:
-            if word.lower() == suggested_word.lower():
-                return word
-
-        # If no exact match, check if any product is mentioned in the response
-        for word in valid_words:
-            if word.lower() in response.text.lower():
-                return word
-
-        # If no match, ask Gemini to generate a fallback response
-        fallback_prompt = f"""
-        Based on the description: '{description}', provide a suggestion for a crop product.
-        Don't worry about matching it to the existing list. Just give a reasonable suggestion based on the description.
-        """
-
-        fallback_response = model.generate_content(fallback_prompt)
-        return fallback_response.text.strip() or "No matching word found."
+        # Ensure the response is strictly from valid_words
+        if suggested_word in valid_words:
+            return suggested_word
+        
+        return "No matching word found."
 
     except Exception as e:
         return f"Error: {str(e)}"
@@ -59,6 +55,13 @@ def SuggestCrops(request):
         crops_product = ["Moringa", "Wheat", "Rice", "Corn", "Barley"]
         result = get_matching_word(description, crops_product)
 
-        return render(request, "app1_chatapp/chathome.html", {"matching_product": result, "message":"The best matching crop for your description is: "})
+        context = {
+            "matching_product": result, 
+            "message":"The best matching crop for your description is: ",
+            "description" : description,
+            "timestamp": now().strftime("%Y-%m-%d %H:%M:%S")  
+        }
+
+        return render(request, "app1_chatapp/chathome.html", context)
     return render(request,  "app1_chatapp/chathome.html", {"error": "Invalid request method"})
 

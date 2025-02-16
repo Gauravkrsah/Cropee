@@ -1,4 +1,5 @@
 <main class="main-content">
+
     <!-- Mobile Header -->
     <div class="mobile-header md:hidden">
         <button class="menu-button hover:bg-gray-700 rounded-lg p-2">
@@ -17,6 +18,7 @@
         </div>
     </div>
 
+
     <!-- Desktop Header -->
     <div class="hidden md:flex items-center justify-between px-4 py-2 border-b border-gray-700">
         <h1 class="text-lg font-semibold text-white">Cropsay</h1>
@@ -30,64 +32,81 @@
         </div>
     </div>
 
-    
-    {% if matching_product %}
-        <div class="content-wrapper w3-border w3-border-white "  style="width:100%;" >
-            <button class="close-btn" onclick="window.location.href='{% url 'chathome' %}'; this.parentElement.style.display='none'"  style="position: absolute; top: 5px; right: 10px; background: none; border: none; font-size: 20px; font-weight: bold; cursor: pointer;">&times;</button>
-            <h3 class="w3-serif">{{message}}<strong>{{ matching_product }}</strong></h3>
-        </div>
-    {% elif error %}
-    <div class="content-wrapper" style="margin-top:200px;">
-        <div class="w3-panel w3-red w3-padding w3-margin">
-            <p class="w3-large">{{ error }}</p>
-        </div>
-    </div>
-    {% else %}
-    <!-- Content Wrapper -->
-        <div class="content-wrapper" style="margin-top:200px;">
-            <h2 class="text-4xl font-semibold text-center mb-8">What can I help with?</h2>
-            
-            <!-- Quick Actions -->
-            <div class="quick-actions mb-8 flex flex-wrap justify-center gap-2 max-w-3xl mx-auto px-4">
-                <button class="quick-action-btn">
-                    <span class="material-icons">grass</span>
-                    Crop Analysis
-                </button>
-                
-                
-                <button class="quick-action-btn">
-                    <span class="material-icons">inventory_2</span>
-                    Storage Solutions
-                </button>
-                <button class="quick-action-btn">
-                    <span class="material-icons">attach_money</span>
-                    Market Prices
-                </button>
-                <button class="quick-action-btn">
-                    <span class="material-icons">science</span>
-                    Soil Testing
-                </button>
-                <button class="quick-action-btn">
-                    <span class="material-icons">schedule</span>
-                    Crop Calendar
-                </button>
-            </div>
 
-            {% if not user.is_authenticated %}
-                <div class="w3-content w3-padding-large">
-                    <div class="w3-content w3-center w3-border w3-padding-large w3-border w3-round-large w3-border-white">
-                        <p class="w3-text-red">Please <a href="{% url 'google-login' %}">authenticate</a> to start the conversation.</p>
+    <div class="chat-container p-4 space-y-4 max-w-3xl mx-auto">
+        {% if matching_product %}
+            <!-- User Message -->
+            <div class="message user-message flex justify-end items-center space-x-2">
+                <div class="message-content bg-blue-500 text-white p-3 rounded-lg shadow">
+                    {{ description }}
+                </div>
+                <img src="https://cdn-icons-png.flaticon.com/512/4140/4140048.png" 
+                     alt="User Avatar" class="w-8 h-8 rounded-full">
+            </div>
+    
+            <!-- Bot Response -->
+            <div class="message bot-message flex justify-start items-center space-x-2">
+                <img src="https://cdn-icons-png.flaticon.com/512/4715/4715320.png" 
+                     alt="Bot Avatar" class="w-8 h-8 rounded-full">
+                <div class="message-content bg-gray-800 text-white p-3 rounded-lg shadow">
+                    {{message}}<strong>{{ matching_product }}</strong>
+                </div>
+            </div>
+            
+        {% elif error %}
+            <div class="message bot-message flex justify-start items-center space-x-2">
+                <img src="https://cdn-icons-png.flaticon.com/512/4715/4715320.png" 
+                     alt="Bot Avatar" class="w-8 h-8 rounded-full">
+                <div class="message-content bg-red-500 text-white p-3 rounded-lg shadow">
+                    {{ error }}
+                </div>
+            </div>
+        {% else %}
+            <!-- Content Wrapper -->
+                <div class="content-wrapper" style="margin-top:200px;">
+                    <h2 class="text-4xl font-semibold text-center mb-8">What can I help with?</h2>
+                    
+                    <!-- Quick Actions -->
+                    <div class="quick-actions mb-8 flex flex-wrap justify-center gap-2 max-w-3xl mx-auto px-4">
+                        <button class="quick-action-btn">
+                            <span class="material-icons">grass</span>
+                            Crop Analysis
+                        </button>
+                        
+                        
+                        <button class="quick-action-btn">
+                            <span class="material-icons">inventory_2</span>
+                            Storage Solutions
+                        </button>
+                        <button class="quick-action-btn">
+                            <span class="material-icons">attach_money</span>
+                            Market Prices
+                        </button>
+                        <button class="quick-action-btn">
+                            <span class="material-icons">science</span>
+                            Soil Testing
+                        </button>
+                        <button class="quick-action-btn">
+                            <span class="material-icons">schedule</span>
+                            Crop Calendar
+                        </button>
+                    </div>
+        
+                    {% if not user.is_authenticated %}
+                        <div class="w3-content w3-padding-large">
+                            <div class="w3-content w3-center w3-border w3-padding-large w3-border w3-round-large w3-border-white">
+                                <p class="w3-text-red">Please <a href="{% url 'google-login' %}">authenticate</a> to start the conversation.</p>
+                            </div>
+                        </div>
+                    {% endif %}
+                    
+                    <!-- Footer Text -->
+                    <div class="footer-text text-sm text-gray-400 mt-4">
+                        Cropsay can make mistakes. Check important info.
                     </div>
                 </div>
             {% endif %}
-            
-            <!-- Footer Text -->
-            <div class="footer-text text-sm text-gray-400 mt-4">
-                Cropsay can make mistakes. Check important info.
-            </div>
-        </div>
-    {% endif %}
-
+    </div>
 
 
     <!-- Search Container -->
@@ -98,6 +117,7 @@
                 <button type="button" class="plus-button">
                     <span class="material-icons">add</span>
                 </button>
+
                 <input type="text" name="description" placeholder="Message Cropsay..." class="w-full focus:outline-none bg-transparent" rows="1" required>
 
                 <div class="dynamic-button">
@@ -114,3 +134,5 @@
 
 
 </main>
+
+

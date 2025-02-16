@@ -10,5 +10,6 @@ urlpatterns = [
     path('app1_chatapp/', include("app1_chatapp.api.urls")),
     path('app2_all_products/', include("app2_all_products.api.urls")),
     path('google_auth/', include("app3_authentication.api.urls")),
+    path('app4_chat_specialist/', include("app4_chat_specialist.api.urls"))
 ]
 
