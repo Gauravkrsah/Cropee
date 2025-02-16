@@ -30,6 +30,8 @@ GEMINI_KEY = config("GEMINI_KEY")
 
 # Application definition
 INSTALLED_APPS = [
+    'daphne',
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -74,8 +76,8 @@ TEMPLATES = [
 ]
 
 
-WSGI_APPLICATION = 'CropSay.wsgi.application'
-
+# WSGI_APPLICATION = 'CropSay.wsgi.application'
+ASGI_APPLICATION = 'CropSay.asgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases

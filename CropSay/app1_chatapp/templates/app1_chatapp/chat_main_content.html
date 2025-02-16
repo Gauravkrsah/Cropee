@@ -90,6 +90,7 @@
                             <span class="material-icons">schedule</span>
                             Crop Calendar
                         </button>
+                        <button id="send-message-button">Send Message</button>
                     </div>
         
                     {% if not user.is_authenticated %}
@@ -99,6 +100,7 @@
                             </div>
                         </div>
                     {% endif %}
+
                     
                     <!-- Footer Text -->
                     <div class="footer-text text-sm text-gray-400 mt-4">
@@ -134,5 +136,31 @@
 
 
 </main>
+
+<script>
+    //Creating new WebSocket connection.
+    const url = `ws://127.0.0.1:8000/websocket/`;
+    const chat_websocket = new WebSocket(url);
+
+    //Sending an event from client  to consumer
+    //chat_websocket.send('{"type":"message", "message":"Hello"}'); --> Use DOM to send 
+    const send_button = document.getElementById("send-message-button");
+
+    send_button.addEventListener("click", function() {
+      chat_websocket.send(`{
+          "type": "new_message",
+          "message": "Hello"
+      }`);
+  
+    });
+
+    
+
+    //Response from consumer to client
+    chat_websocket.onmessage = function(event){
+        console.log(event);
+    };
+
+</script>
 
 
